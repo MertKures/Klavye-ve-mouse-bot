@@ -1,10 +1,8 @@
 using System;
-using System.Drawing;
-using System.Runtime.InteropServices;
-using Timer = System.Timers.Timer;
-using System.Text;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Timer = System.Timers.Timer;
 
 namespace MouseM
 {
@@ -233,7 +231,7 @@ namespace MouseM
                 Up(MOUSEEVENTF_XUP, int.MaxValue, int.MaxValue, 2);
         }
 
-        class MouseState
+        class MouseState : ICloneable
         {
             public bool isLeftButtonDown = false;
             public bool isRightButtonDown = false;
@@ -294,7 +292,7 @@ namespace MouseM
                     Up(MOUSEEVENTF_XUP, X, Y, 2);
             }
 
-            public MouseState Clone()
+            public object Clone()
             {
                 return new MouseState(X, Y);
             }
