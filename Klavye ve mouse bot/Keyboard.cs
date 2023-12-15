@@ -67,14 +67,11 @@ namespace KeyboardM
         public void StartRecording()
         {
 			if (IsPlaying || IsRecording)
-			{
-				Log(string.Concat("StartRecording()\n", (IsPlaying == true) ? "->IsPlaying = true olduğundan çalışmadı.\n" : "", (IsRecording == true) ? "->IsRecording = true olduğundan çalışmadı." : ""));
 				return;
-			}
 			
 			IsRecording = true;
 			
-			for (var i = 0;i < keyList.Count;i++)
+            for (var i = 0; i < keyList.Count; i++)
             {
 				keyList[i].Clear();
 				keyList[i] = null;
@@ -88,24 +85,17 @@ namespace KeyboardM
 		public void StopRecording()
         {
 			if (IsPlaying)
-            {
-				Log(string.Concat("StopRecording()\n", (IsPlaying == true) ? "->IsPlaying = true olduğundan çalışmadı." : ""));
 				return;
-            }
 			
             RecordingTimer.Stop();
 			
 			IsRecording = false;
         }
 		
-		//If play attempt is successfull it returns true, otherwise false.
 		public bool Play()
         {
 			if (IsPlaying || IsRecording)
-			{
-				Log(string.Concat("Play()\n", (IsPlaying == true) ? "->IsPlaying = true olduğundan çalışmadı.\n" : "", (IsRecording == true) ? "->IsRecording = true olduğundan çalışmadı." : ""));
 				return false;
-			}
 			
 			counter = 0;
 			
@@ -141,31 +131,6 @@ namespace KeyboardM
 				
 				IsPlaying = false;
 				
-				Console.WriteLine(string.Join(
-				Environment.NewLine,
-				Environment.NewLine,
-				DateTime.Now.ToString(),
-				"counter : " + counter,
-				"keyList.Count = " + keyList.Count.ToString() + " " + (keyList.Count == 0),
-				"(counter < 0) = " + counter + " " + (counter < 0),
-				"(counter >= keyList.Count) = " + counter + ">=" + keyList.Count + " " + (counter >= keyList.Count),
-				"(counter != 0) = " + counter + " " + (counter != 0),
-				Environment.NewLine
-				));
-				
-				Log(
-				string.Join(
-				Environment.NewLine,
-				Environment.NewLine,
-				DateTime.Now.ToString(),
-				"counter : " + counter,
-				"keyList.Count = " + keyList.Count.ToString() + " " + (keyList.Count == 0),
-				"(counter < 0) = " + counter + " " + (counter < 0),
-				"(counter >= keyList.Count) = " + counter + ">=" + keyList.Count + " " + (counter >= keyList.Count),
-				"(counter != 0) = " + counter + " " + (counter != 0),
-				Environment.NewLine
-				));
-				
                 counter = 0;
 
 				return;
@@ -178,8 +143,6 @@ namespace KeyboardM
 				var obj = liste[i];
 				
 				if (obj == null)
-				{
-					Console.WriteLine("null");
 					return;
 				}
 				

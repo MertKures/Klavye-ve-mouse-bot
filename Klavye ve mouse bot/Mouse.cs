@@ -67,10 +67,7 @@ namespace MouseM
         public void StartRecording()
         {
             if (IsPlaying || IsRecording)
-            {
-                Log(string.Concat("StartRecording()\n", (IsPlaying == true) ? "->IsPlaying = true olduğundan çalışmadı.\n" : "", (IsRecording == true) ? "->IsRecording = true olduğundan çalışmadı." : ""));
                 return;
-            }
 
             IsRecording = true;
 
@@ -82,10 +79,7 @@ namespace MouseM
         public void StopRecording()
         {
             if (IsPlaying)
-            {
-                Log(string.Concat("StopRecording()\n", (IsPlaying == true) ? "->IsPlaying = true olduğundan çalışmadı." : ""));
                 return;
-            }
 
             RecordingTimer.Stop();
 
@@ -96,10 +90,7 @@ namespace MouseM
         public bool Play()
         {
             if (IsPlaying || IsRecording)
-            {
-                Log(string.Concat("Play()\n", (IsPlaying == true) ? "->IsPlaying = true olduğundan çalışmadı.\n" : "", (IsRecording == true) ? "->IsRecording = true olduğundan çalışmadı." : ""));
                 return false;
-            }
 
             IsPlaying = true;
 
@@ -140,18 +131,6 @@ namespace MouseM
                 PlayTimer.Stop();
 
                 IsPlaying = false;
-
-                Log(
-                string.Join(
-                Environment.NewLine,
-                DateTime.Now.ToString(),
-                "counter : " + counter,
-                "mouseStateList.Count = " + mouseStateList.Count.ToString(),
-                "(counter < 0) = " + (counter < 0).ToString(),
-                "(counter >= mouseStateList.Count) = " + (counter >= mouseStateList.Count).ToString(),
-                "(counter != 0) = " + (counter != 0).ToString(),
-                Environment.NewLine
-                ));
 
                 counter = 0;
 
@@ -209,11 +188,6 @@ namespace MouseM
         private static bool IsKeyDown(Keys tus)
         {
             return GetAsyncKeyState(tus) < 0;
-        }
-
-        private static void Log(string mesaj)
-        {
-            System.Diagnostics.Debug.WriteLine(mesaj);
         }
 
         private static void Up(int MouseEventTF, int xpos, int ypos, int XButton = 0)
